@@ -155,7 +155,7 @@ export default function MarketingPage() {
       </section>
       
       {/* Statistiche */}
-      <section className="py-16 bg-secondary-bg/50">
+      <section className="py-16 bg-gray-800/50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
             {[
@@ -206,7 +206,7 @@ export default function MarketingPage() {
             {services.map((service, index) => (
               <motion.div 
                 key={service.title}
-                className="bg-secondary-bg/30 rounded-xl p-6 hover:shadow-lg border border-marketing-primary/10 hover:border-marketing-primary/30 transition-all duration-300"
+                className="bg-gray-800/30 rounded-xl p-6 hover:shadow-lg border border-marketing-primary/10 hover:border-marketing-primary/30 transition-all duration-300"
                 variants={itemVariants}
               >
                 <div className="w-14 h-14 rounded-full bg-marketing-primary/10 flex items-center justify-center mb-5">
@@ -221,7 +221,7 @@ export default function MarketingPage() {
       </section>
       
       {/* Case Studies */}
-      <section id="case-studies" className="py-24 bg-secondary-bg/30">
+      <section id="case-studies" className="py-24 bg-gray-800/30">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-16"
@@ -322,7 +322,7 @@ export default function MarketingPage() {
             {testimonials.map((testimonial, index) => (
               <motion.div 
                 key={testimonial.name}
-                className="bg-secondary-bg/30 p-6 rounded-xl border border-marketing-primary/10"
+                className="bg-gray-800/30 p-6 rounded-xl border border-marketing-primary/10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

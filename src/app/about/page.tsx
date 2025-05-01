@@ -32,7 +32,7 @@ export default function AboutPage() {
 
           {/* Colonna Destra: Immagine con Tilt */}
           <motion.div
-            className="flex justify-center items-center h-96 md:h-[500px] rounded-lg overflow-hidden bg-secondary-bg/30" // Usa colore secondario
+            className="flex justify-center items-center h-96 md:h-[500px] rounded-lg overflow-hidden bg-gray-800/30" // Usa colore secondario
             key={`${theme}-image`} // Forza rianimazione?
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}

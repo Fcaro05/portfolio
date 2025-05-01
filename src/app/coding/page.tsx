@@ -116,7 +116,7 @@ export default function CodingPage() {
       </section>
       
       {/* Tech Stack Section */}
-      <section className="py-16 bg-secondary-bg/30 relative overflow-hidden">
+      <section className="py-16 bg-gray-800/30 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-12"
@@ -135,7 +135,7 @@ export default function CodingPage() {
             {skills.map((category, index) => (
               <motion.div 
                 key={category.name}
-                className="bg-secondary-bg/50 p-6 rounded-xl border border-coding-primary/20 backdrop-blur-sm"
+                className="bg-gray-800/50 p-6 rounded-xl border border-coding-primary/20 backdrop-blur-sm"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -184,7 +184,7 @@ export default function CodingPage() {
             {featuredProjects.map((project, index) => (
               <motion.div 
                 key={project.title}
-                className="bg-secondary-bg/30 rounded-xl overflow-hidden border border-coding-primary/20 hover:shadow-lg hover:shadow-coding-primary/10 transition-all group"
+                className="bg-gray-800/30 rounded-xl overflow-hidden border border-coding-primary/20 hover:shadow-lg hover:shadow-coding-primary/10 transition-all group"
                 variants={itemVariants}
               >
                 <div className="h-48 overflow-hidden relative">

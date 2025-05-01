@@ -144,7 +144,7 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="La tua email"
-                  className="flex-1 min-w-0 px-3 py-2 text-sm rounded-l-md bg-secondary-bg/50 focus:outline-none focus:ring-1 focus:ring-[color:var(--primary)]"
+                  className="flex-1 min-w-0 px-3 py-2 text-sm rounded-l-md bg-gray-800/50 focus:outline-none focus:ring-1 focus:ring-[color:var(--primary)]"
                 />
                 <motion.button
                   className="inline-flex items-center px-3 py-2 text-sm rounded-r-md bg-[color:var(--primary)] text-black font-medium hover:bg-[color:var(--primary)]/80"

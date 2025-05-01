@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,11 +5,24 @@
 @layer base {
   :root {
     /* Default (può essere uno dei temi o colori neutri) */
-    --background: #111827; /* Marketing bg */
-    --foreground: #FFFFFF;
-    --primary: #FBBF24; /* Marketing primary */
-    --accent: #FDE68A; /* Marketing accent */
+    --background: #0f0a14; /* Marketing bg */
+    --foreground: #f5f5f5;
+    --primary: #ffb347; /* Marketing primary */
+    --accent: #ffb347; /* Marketing accent */
     --secondary-bg: #1f2937; /* Grigio scuro per elementi neutri */
+    
+    /* Per sfondo con diagonal split */
+    --marketing-bg: #0f0a14;
+    --coding-bg: #0a1414;
+
+    --marketing-accent: #ffb347;
+    --marketing-text: #f5f5f5;
+
+    --coding-accent: #7ee787;
+    --coding-text: #e0e0e0;
+
+    --transition-duration: 400ms;
+    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 
      /* Transizione per i colori */
      --color-transition: color 400ms cubic-bezier(0.4, 0, 0.2, 1), 
@@ -21,27 +32,33 @@
   }
 
   body[data-theme='marketing'] {
-    --background: #111827;
-    --foreground: #FFFFFF;
-    --primary: #FBBF24;
-    --accent: #FDE68A;
+    --background: #0f0a14;
+    --foreground: #f5f5f5;
+    --primary: #ffb347;
+    --accent: #ffb347;
   }
 
   body[data-theme='coding'] {
-    --background: #0F172A;
-    --foreground: #FFFFFF;
-    --primary: #38BDF8;
-    --accent: #7DD3FC;
+    --background: #0a1414;
+    --foreground: #e0e0e0;
+    --primary: #7ee787;
+    --accent: #7ee787;
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: var(--marketing-bg);
+    color: var(--marketing-text);
     font-family: system-ui, sans-serif; /* Fallback font */
-    transition: var(--color-transition);
+    transition: background-color var(--transition-duration) var(--transition-ease),
+                color var(--transition-duration) var(--transition-ease);
     @apply antialiased flex flex-col min-h-screen;
      /* Applica i font Geist se disponibili */
      font-family: var(--font-geist-sans, system-ui, sans-serif);
+  }
+
+  body[data-theme="coding"] {
+    background-color: var(--coding-bg);
+    color: var(--coding-text);
   }
 
    /* Stili base per link, bottoni etc. che usano le variabili */
@@ -58,21 +75,39 @@
      }
    }
 
-   /* Bottone primario con transizione migliorata */
-   .btn-primary {
+   /* Bottone primario con transizione migliorata - Marketing Style*/
+   .btn-marketing {
       background-color: var(--primary);
-      color: var(--background); /* Inverti per contrasto */
+      color: #0f0a14; /* Inverti per contrasto */
       transition: var(--color-transition), transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
       @apply px-6 py-2 rounded font-semibold;
       &:hover {
         filter: brightness(1.1);
         transform: scale(1.03);
+        box-shadow: 0 0 15px var(--primary);
       }
        &:active {
         transform: scale(0.97);
       }
    }
-    /* Bottone secondario con transizione migliorata */
+
+   /* Bottone primario con transizione migliorata - Coding Style */
+   .btn-coding {
+      background-color: var(--primary);
+      color: #0a1414; /* Inverti per contrasto */
+      transition: var(--color-transition), transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      @apply px-6 py-2 rounded font-semibold;
+      &:hover {
+        filter: brightness(1.1);
+        transform: scale(1.03);
+        box-shadow: 0 0 15px var(--primary);
+      }
+       &:active {
+        transform: scale(0.97);
+      }
+   }
+
+   /* Bottone secondario con transizione migliorata */
    .btn-secondary {
       border: 1px solid var(--foreground);
       color: var(--foreground);
@@ -87,6 +122,47 @@
           transform: scale(0.97);
         }
    }
+
+   /* Overlay diagonale per la divisione delle sezioni */
+   .diagonal-divider {
+     position: relative;
+     
+     &::after {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: linear-gradient(135deg, rgba(15, 10, 20, 0.2) 50%, rgba(10, 20, 20, 0.2) 50%);
+       z-index: -1;
+       pointer-events: none;
+     }
+   }
+
+   /* Carta con effetto di evidenziamento per il lato marketing */
+   .card-marketing {
+     @apply bg-gray-800/20 rounded-lg p-6 border border-transparent;
+     transition: all 0.3s ease;
+
+     &:hover {
+       border-color: #ffb347;
+       box-shadow: 0 0 20px rgba(255, 179, 71, 0.2);
+       transform: translateY(-5px);
+     }
+   }
+
+   /* Carta con effetto di evidenziamento per il lato coding */
+   .card-coding {
+     @apply bg-gray-800/20 rounded-lg p-6 border border-transparent;
+     transition: all 0.3s ease;
+
+     &:hover {
+       border-color: #7ee787;
+       box-shadow: 0 0 20px rgba(126, 231, 135, 0.2);
+       transform: translateY(-5px);
+     }
+   }
 }
 
 /* Classi per enfatizzare il cambio tema */
@@ -100,13 +176,13 @@
 
 @keyframes flash-marketing {
   0% { background-color: var(--background); }
-  20% { background-color: rgba(251, 191, 36, 0.15); }
+  20% { background-color: rgba(255, 179, 71, 0.15); }
   100% { background-color: var(--background); }
 }
 
 @keyframes flash-coding {
   0% { background-color: var(--background); }
-  20% { background-color: rgba(56, 189, 248, 0.15); }
+  20% { background-color: rgba(126, 231, 135, 0.15); }
   100% { background-color: var(--background); }
 }
 
@@ -118,5 +194,36 @@
   .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+  }
+
+  /* Utilità per la transizione di sfondo diagonale */
+  .bg-diagonal-gradient {
+    background: linear-gradient(135deg, #0f0a14 50%, #0a1414 50%);
+  }
+
+  /* Classi per elementi marketing e coding */
+  .marketing-highlight {
+    @apply border-l-4 border-marketing-primary pl-3;
+  }
+
+  .coding-highlight {
+    @apply border-l-4 border-coding-primary pl-3;
+  }
+}
+
+@layer components {
+  .section {
+    padding: 4rem 2rem;
+    transition: background-color var(--transition-duration) var(--transition-ease);
+  }
+
+  .section-marketing {
+    background-color: var(--marketing-bg);
+    color: var(--marketing-text);
+  }
+
+  .section-coding {
+    background-color: var(--coding-bg);
+    color: var(--coding-text);
   }
 }
