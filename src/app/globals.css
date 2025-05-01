@@ -52,8 +52,8 @@
     transition: background-color var(--transition-duration) var(--transition-ease),
                 color var(--transition-duration) var(--transition-ease);
     @apply antialiased flex flex-col min-h-screen;
-     /* Applica i font Geist se disponibili */
-     font-family: var(--font-geist-sans, system-ui, sans-serif);
+    /* Applica i font Inter se disponibili */
+    font-family: var(--font-sans, system-ui, sans-serif);
   }
 
   body[data-theme="coding"] {
