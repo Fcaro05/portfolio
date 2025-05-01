@@ -1,26 +1,122 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Default (può essere uno dei temi o colori neutri) */
+    --background: #111827; /* Marketing bg */
+    --foreground: #FFFFFF;
+    --primary: #FBBF24; /* Marketing primary */
+    --accent: #FDE68A; /* Marketing accent */
+    --secondary-bg: #1f2937; /* Grigio scuro per elementi neutri */
+
+     /* Transizione per i colori */
+     --color-transition: color 400ms cubic-bezier(0.4, 0, 0.2, 1), 
+                          background-color 400ms cubic-bezier(0.4, 0, 0.2, 1), 
+                          border-color 400ms cubic-bezier(0.4, 0, 0.2, 1), 
+                          box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  body[data-theme='marketing'] {
+    --background: #111827;
+    --foreground: #FFFFFF;
+    --primary: #FBBF24;
+    --accent: #FDE68A;
+  }
+
+  body[data-theme='coding'] {
+    --background: #0F172A;
+    --foreground: #FFFFFF;
+    --primary: #38BDF8;
+    --accent: #7DD3FC;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: system-ui, sans-serif; /* Fallback font */
+    transition: var(--color-transition);
+    @apply antialiased flex flex-col min-h-screen;
+     /* Applica i font Geist se disponibili */
+     font-family: var(--font-geist-sans, system-ui, sans-serif);
+  }
+
+   /* Stili base per link, bottoni etc. che usano le variabili */
+   h1, h2, h3, h4, h5, h6 {
+      color: var(--primary);
+      transition: var(--color-transition);
+   }
+
+   a {
+     color: var(--accent);
+     transition: var(--color-transition);
+     &:hover {
+        color: var(--primary);
+     }
+   }
+
+   /* Bottone primario con transizione migliorata */
+   .btn-primary {
+      background-color: var(--primary);
+      color: var(--background); /* Inverti per contrasto */
+      transition: var(--color-transition), transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+      @apply px-6 py-2 rounded font-semibold;
+      &:hover {
+        filter: brightness(1.1);
+        transform: scale(1.03);
+      }
+       &:active {
+        transform: scale(0.97);
+      }
+   }
+    /* Bottone secondario con transizione migliorata */
+   .btn-secondary {
+      border: 1px solid var(--foreground);
+      color: var(--foreground);
+       transition: var(--color-transition), transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+       @apply px-6 py-2 rounded;
+       &:hover {
+          background-color: var(--foreground);
+          color: var(--background);
+          transform: scale(1.03);
+       }
+        &:active {
+          transform: scale(0.97);
+        }
+   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Classi per enfatizzare il cambio tema */
+.theme-changing-to-marketing {
+  animation: flash-marketing 0.5s ease-out;
+}
+
+.theme-changing-to-coding {
+  animation: flash-coding 0.5s ease-out;
+}
+
+@keyframes flash-marketing {
+  0% { background-color: var(--background); }
+  20% { background-color: rgba(251, 191, 36, 0.15); }
+  100% { background-color: var(--background); }
+}
+
+@keyframes flash-coding {
+  0% { background-color: var(--background); }
+  20% { background-color: rgba(56, 189, 248, 0.15); }
+  100% { background-color: var(--background); }
+}
+
+/* ... utility .no-scrollbar ... */
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
