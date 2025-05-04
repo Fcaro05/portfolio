@@ -6,7 +6,10 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import Navbar from '@/components/Navbar';
 
 const inter = Inter({ subsets: ["latin"] });
-const robotoMono = Roboto_Mono({ subsets: ["latin"] });
+const robotoMono = Roboto_Mono({ 
+  subsets: ["latin"],
+  variable: '--font-roboto-mono'
+});
 
 export const metadata: Metadata = {
   title: "Portfolio Marketing & Coding",
