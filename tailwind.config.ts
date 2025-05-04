@@ -26,7 +26,9 @@ const config: Config = {
           primary: "#7ee787",    // Verde neon per coding
           accent: "#7ee787",     // Verde neon per accent 
           font: "#e0e0e0",       // Testo chiaro
-        }
+        },
+        'marketing-primary': '#4CAF50',
+        'coding-primary': '#6C63FF',
       },
       // Animazione Marquee
       animation: {

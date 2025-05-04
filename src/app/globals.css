@@ -29,6 +29,11 @@
                           background-color 400ms cubic-bezier(0.4, 0, 0.2, 1), 
                           border-color 400ms cubic-bezier(0.4, 0, 0.2, 1), 
                           box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    --marketing-primary: #4CAF50;
+    --marketing-gradient: linear-gradient(135deg, #4CAF50 0%, #FFD700 100%);
+    --coding-primary: #6C63FF;
+    --coding-gradient: linear-gradient(135deg, #6B46C1 0%, #9F7AEA 100%);
   }
 
   body[data-theme='marketing'] {
@@ -46,14 +51,8 @@
   }
 
   body {
-    background-color: var(--marketing-bg);
-    color: var(--marketing-text);
-    font-family: system-ui, sans-serif; /* Fallback font */
-    transition: background-color var(--transition-duration) var(--transition-ease),
-                color var(--transition-duration) var(--transition-ease);
-    @apply antialiased flex flex-col min-h-screen;
-    /* Applica i font Inter se disponibili */
-    font-family: var(--font-sans, system-ui, sans-serif);
+    @apply antialiased min-h-screen;
+    background: #ffffff;
   }
 
   body[data-theme="coding"] {
@@ -225,5 +224,95 @@
   .section-coding {
     background-color: var(--coding-bg);
     color: var(--coding-text);
+  }
+
+  .split-layout {
+    @apply relative min-h-screen flex;
+  }
+
+  .split-layout-marketing {
+    @apply w-1/2 bg-gradient-to-br from-marketing-primary to-yellow-400 flex items-center justify-center p-8 relative overflow-hidden;
+  }
+
+  .split-layout-coding {
+    @apply w-1/2 bg-gradient-to-bl from-coding-primary to-purple-400 flex items-center justify-center p-8 relative overflow-hidden;
+  }
+
+  .split-content {
+    @apply max-w-xl relative z-10;
+  }
+
+  .vs-circle {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-full flex items-center justify-center text-2xl font-bold z-20 shadow-lg;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6 transition-all duration-300;
+  }
+
+  .card-marketing {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden border-t-4 border-marketing-primary;
+  }
+
+  .card-coding {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden border-t-4 border-coding-primary;
+  }
+
+  .skill-bar {
+    @apply w-full h-2 bg-gray-200 rounded-full overflow-hidden;
+  }
+
+  .skill-progress {
+    @apply h-full rounded-full;
+  }
+
+  .tag {
+    @apply px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .tag-marketing {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .tag-coding {
+    @apply bg-purple-100 text-purple-800;
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300;
+  }
+
+  .btn-marketing {
+    @apply bg-white text-marketing-primary hover:bg-opacity-90;
+  }
+
+  .btn-coding {
+    @apply bg-white text-coding-primary hover:bg-opacity-90;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-lg border transition-all duration-300
+           focus:outline-none focus:ring-2;
+  }
+
+  .input-marketing {
+    @apply border-[#4CAF50] focus:ring-[#4CAF50];
+  }
+
+  .input-coding {
+    @apply border-[#6B46C1] focus:ring-[#6B46C1];
+  }
+
+  /* Form Styles */
+  input:focus, textarea:focus {
+    @apply outline-none ring-2 ring-opacity-50;
+  }
+
+  .marketing-form input:focus, .marketing-form textarea:focus {
+    @apply ring-marketing-primary;
+  }
+
+  .coding-form input:focus, .coding-form textarea:focus {
+    @apply ring-coding-primary;
   }
 }
