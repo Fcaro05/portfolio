@@ -2,10 +2,12 @@
 
 import React, { useState } from 'react';
 
-const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('html');
+type TabType = 'html' | 'css' | 'js';
 
-  const codeSnippets = {
+const App: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<TabType>('html');
+
+  const codeSnippets: Record<TabType, string> = {
     html: `<!DOCTYPE html>
 <html lang="it">
 <head>
